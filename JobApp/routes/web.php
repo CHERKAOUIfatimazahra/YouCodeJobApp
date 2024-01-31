@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\HomeController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +18,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+ 
+Route::get('/',[HomeController::class, 'index']);
+// Route::get('/test',[TestController::class, 'dashboard']);
+// Route::get('/companies',[CompanyController::class,'index'])->name('companies.index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('companies', CompanyController::class);
+// Route::post('/companies',[CompanyController::class,'store'])->name('companies.store');
+
+
