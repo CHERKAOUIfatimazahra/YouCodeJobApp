@@ -254,11 +254,11 @@
                                                         aria-labelledby="apple-imac-27-dropdown-button{{ $companie->id }}">
                                                         <li>
                                                             <a href="{{ route('companies.show', $companie->id) }}"
-                                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                                class="block py-2 px-4 hover:bg-blue-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                                                         </li>
                                                         <li>
                                                             <a href="{{ route('companies.edit', $companie->id) }}"
-                                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                                class="block py-2 px-4 hover:bg-green-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                         </li>
                                                     </ul>
                                                     <div class="py-1">
@@ -271,6 +271,7 @@
                                                     </div>
                                                 </div>
                                             </form>
+
                                         </td>
                                     </tr>
                                 @endforeach

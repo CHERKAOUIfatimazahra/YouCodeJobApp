@@ -7,9 +7,9 @@
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800">Add New Company</h2>
                 </div>
-                <div>
+                <div class="mb-8 flex justify-end">
                     <a href="{{ route('companies.index') }}"
-                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Back</a>
+                        class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md m-2 p-2 transition duration-300">Back</a>
                 </div>
             </div>
 

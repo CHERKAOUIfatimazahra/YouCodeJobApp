@@ -3,7 +3,8 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('announcements.index') }}"> Back</a>
+                <a class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded m-7 p-7"
+                    href="{{ route('announcements.index') }}"> Back</a>
             </div>
         </div>
     </div>

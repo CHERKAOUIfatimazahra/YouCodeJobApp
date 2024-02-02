@@ -1,7 +1,12 @@
 @extends('layouts.app')
 @section('content')
-    <div class="pull-right">
-        <a class="btn btn-primary" href="{{ route('announcements.index') }}"> Back</a>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-right">
+                <a class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded m-7 p-7"
+                    href="{{ route('announcements.index') }}"> Back</a>
+            </div>
+        </div>
     </div>
     <div class="mx-4">
         <div class="bg-gray-50 border border-gray-200 p-10 rounded">

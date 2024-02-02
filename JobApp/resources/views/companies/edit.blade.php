@@ -5,7 +5,7 @@
         <div class="w-full max-w-md">
             <div class="mb-8 flex justify-end">
                 <a href="{{ route('companies.index') }}"
-                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Back</a>
+                    class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md m-2 p-2 transition duration-300">Back</a>
             </div>
 
             @if ($errors->any())

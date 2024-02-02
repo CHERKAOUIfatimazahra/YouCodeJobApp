@@ -257,13 +257,13 @@
                                                     aria-labelledby="apple-imac-27-dropdown-button{{ $announcement->id }}">
                                                     <li>
                                                         <a href="{{ route('announcements.show', $announcement->id) }}"
-                                                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white focus:outline-none focus:bg-gray-100 focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                                                            class="block py-2 px-4 hover:bg-blue-100 dark:hover:bg-gray-600 dark:hover:text-white focus:outline-none focus:bg-gray-100 focus:ring focus:ring-gray-300 focus:ring-opacity-50">
                                                             Show
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="{{ route('announcements.edit', $announcement->id) }}"
-                                                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white focus:outline-none focus:bg-gray-100 focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                                                            class="block py-2 px-4 hover:bg-green-100 dark:hover:bg-gray-600 dark:hover:text-white focus:outline-none focus:bg-gray-100 focus:ring focus:ring-gray-300 focus:ring-opacity-50">
                                                             Edit
                                                         </a>
                                                     </li>
@@ -278,7 +278,9 @@
                                                             Delete
                                                         </button>
                                                     </div>
+                                                </form>
                                             </div>
+
                                             </form>
                                         </td>
                                     </tr>

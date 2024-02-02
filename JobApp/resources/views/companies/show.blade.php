@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="flex items-center justify-center h-screen">
+        <div class="mb-8 flex justify-end">
+            <a href="{{ route('companies.index') }}"
+                class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md m-2 p-2 transition duration-300">Back</a>
+        </div>
         <div class="w-full max-w-lg">
             <div class="text-3xl font-bold text-gray-800 mb-8 text-center">
                 Show Company
