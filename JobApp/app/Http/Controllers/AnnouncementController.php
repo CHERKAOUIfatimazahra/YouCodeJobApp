@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
-use App\Http\Requests\StoreAnnouncementRequest;
-use App\Http\Requests\UpdateAnnouncementRequest;
+use App\Models\Company;
+use Illuminate\Http\Request;
+
+// use App\Http\Requests\StoreAnnouncementRequest;
+// use App\Http\Requests\UpdateAnnouncementRequest;
 
 class AnnouncementController extends Controller
 {
@@ -13,7 +16,10 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        $announcements = Announcement::latest()->paginate(5);
+        
+        return view('announcements.index',compact('announcements'))
+                    ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -21,15 +27,30 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+        return view('Announcements.create', compact('companies'));
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAnnouncementRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required|min:10|max:255',
+            'description'=>'required',
+            'date'=>'required|date',
+            'user_id'=>'exists:users,id',
+            'company_id'=> 'exists:companies,id'
+            
+        ]);
+        // dd($request->all());
+        
+        Announcement::create($request->all());
+         
+        return redirect()->route('announcements.index')
+                        ->with('success','Announcement created successfully.');
+                        
     }
 
     /**
@@ -37,30 +58,69 @@ class AnnouncementController extends Controller
      */
     public function show(Announcement $announcement)
     {
-        //
+        $announcement->load('company');
+        return view('announcements.show', compact('announcement'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+    // public function edit(Announcement $Announcement)
+    // {
+    //     $companies = Company::all();
+    //     return view('announcements.edit', compact('companies'));
+    // }
     public function edit(Announcement $announcement)
     {
-        //
+        $companies = Company::all();
+        return view('announcements.edit', compact('announcement', 'companies'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAnnouncementRequest $request, Announcement $announcement)
+    public function update(Request $request, Announcement $announcement)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable',
+            'date' => 'required|date',
+            'company_id' => 'required|exists:companies,id',
+
+        ]);
+
+        $announcement->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'date' => $request->date,
+            'company_id' => $request->company_id,
+        ]);
+
+        return redirect()->route('announcements.index')->with('success', 'Announcement updated successfully');
     }
+    /**
+     * Update the specified resource in storage.
+     */
+    // public function update(Request $request, Announcement $Announcement)
+    // {
+    //     $request->validate([
+    //         'name'=>'required|min:10|max:255',
+    //         'description'=>'required', 
+    //     ]);
+    //     $Announcement->update($request->all());
+        
+    //     return redirect()->route('announcements.index')
+    //                     ->with('success','Announcement updated successfully');
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Announcement $announcement)
+    public function destroy(Announcement $Announcement)
     {
-        //
+        $Announcement->delete();
+         
+        return redirect()->route('announcements.index')
+                        ->with('success','Announcement deleted successfully');
     }
 }

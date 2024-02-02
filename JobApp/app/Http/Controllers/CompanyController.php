@@ -38,7 +38,7 @@ class CompanyController extends Controller
             'description'=>'required',
             
         ]);
-        
+
         Company::create($request->all());
          
         return redirect()->route('companies.index')

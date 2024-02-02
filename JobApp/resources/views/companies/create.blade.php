@@ -1,51 +1,49 @@
 @extends('layouts.app')
+
 @section('content')
-
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Add New companie</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('companies.index') }}"> Back</a>
-        </div>
-    </div>
-</div>
-   
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-   
-<form action="{{ route('companies.store') }}" method="POST">
-    @csrf
-
-     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>name:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Name">
+    <div class="flex items-center justify-center h-screen">
+        <div class="w-full max-w-md">
+            <div class="mb-8 flex justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Add New Company</h2>
+                </div>
+                <div>
+                    <a href="{{ route('companies.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Back</a>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Description:</strong>
-                <input type="text" name="description" class="form-control" placeholder="Name">
-            </div>
-        </div>
-        
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('companies.store') }}" method="POST">
+                @csrf
+
+                <div class="grid gap-4">
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name:</label>
+                        <input type="text" name="name" id="name" class="form-input" placeholder="Name" required="">
+                    </div>
+
+                    <div>
+                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description:</label>
+                        <input type="text" name="description" id="description" class="form-input" placeholder="Description" required="">
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-   
-</form>
-
 @endsection
-@section('title','YJD create company')
+
+@section('title', 'YJD Create Company')
