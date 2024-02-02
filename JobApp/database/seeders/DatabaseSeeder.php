@@ -17,8 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
-
         User::factory(5)->create();
         
         Company::factory()->count(10)->create();
@@ -37,18 +35,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Company::factory()->count(10)->create();
-        
-
-
 
         // DB::table('companies')->insert([
         //     'name'=>'youcode',
         //     'description'=>'jhkjhgkjxhkghkdf',
         // ]);
-
-        
-
-
 
     }
 }

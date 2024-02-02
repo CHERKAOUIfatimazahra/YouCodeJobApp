@@ -34,12 +34,12 @@
                     </li>
                     <li>
                         <a href="homeAnnoune"
-                            class="block py-2 px-3 md:p-0 text-white bg-orange-700 rounded md:bg-transparent md:text-orange-700 md:dark:text-orange-500"
+                            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-700 d:dark:hover:text-orange-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                             aria-current="page">Annancement</a>
                     </li>
                     <li>
                         <a href="homeCompany"
-                            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-700 d:dark:hover:text-orange-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">companies</a>
+                            class="block py-2 px-3 md:p-0 text-white bg-orange-700 rounded md:bg-transparent md:text-orange-700 md:dark:text-orange-500">companies</a>
                     </li>
                 </ul>
             </div>
@@ -50,32 +50,30 @@
     <section class="bg-white dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
             <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Youcode Job Dating
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Youcode Companies
                 </h2>
                 <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Discover your next career move in
-                    our Job Announcements</p>
+                    our Job Companies</p>
             </div>
             <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
 
-                @foreach ($announcements as $announcement)
+                @foreach ($companies as $companie)
                     <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
-                            <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg " src="img/jobs.jpg"
+                            <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg " src="img/google.jpg"
                                 alt="Bonnie Avatar">
                         </a>
                         <div class="p-5">
                             <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                <a href="#">{{ $announcement->title }}</a>
+                                <a href="#">{{ $companie->title }}</a>
                             </h3>
-                            <span class="text-gray-500 dark:text-gray-400">{{ $announcement->company->name }}</span>
-                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">{{ $announcement->date }}</p>
                             <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                                {{ $announcement->description }}</p>
+                                {{ $companie->description }}</p>
                             <ul class="flex space-x-4 sm:mt-0">
                                 <li>
                                     <a href="#"
                                         class="inline-flex items-center bg-orange-500 hover:bg-orange-700 text-white px-4 py-2 rounded-md transition duration-300">
-                                        Apply for Job
+                                        read more
                                     </a>
                                 </li>
 
@@ -86,7 +84,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    {{ $announcements->links('pagination::tailwind') }}
+                    {{ $companies->links('pagination::tailwind') }}
                 </div>
             </div>
         </div>

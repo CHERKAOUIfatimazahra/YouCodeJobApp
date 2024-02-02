@@ -8,7 +8,8 @@
                     <h2 class="text-2xl font-bold text-gray-800">Add New Company</h2>
                 </div>
                 <div>
-                    <a href="{{ route('companies.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Back</a>
+                    <a href="{{ route('companies.index') }}"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Back</a>
                 </div>
             </div>
 
@@ -29,16 +30,19 @@
                 <div class="grid gap-4">
                     <div>
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name:</label>
-                        <input type="text" name="name" id="name" class="form-input" placeholder="Name" required="">
+                        <input type="text" name="name" id="name" class="form-input" placeholder="Name"
+                            required="">
                     </div>
 
                     <div>
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description:</label>
-                        <input type="text" name="description" id="description" class="form-input" placeholder="Description" required="">
+                        <input type="text" name="description" id="description" class="form-input"
+                            placeholder="Description" required="">
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Submit</button>
+                        <button type="submit"
+                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Submit</button>
                     </div>
                 </div>
             </form>

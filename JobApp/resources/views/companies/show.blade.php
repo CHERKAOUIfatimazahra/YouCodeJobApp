@@ -24,7 +24,8 @@
             </div>
 
             <div class="flex justify-end mt-8">
-                <a href="{{ route('companies.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Back</a>
+                <a href="{{ route('companies.index') }}"
+                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Back</a>
             </div>
         </div>
     </div>

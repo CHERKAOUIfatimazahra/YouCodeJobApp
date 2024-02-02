@@ -10,11 +10,11 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view('auth.register');
+        return view('autoload.register');
     }
     public function loginForm()
     {
-        return view('auth.login');
+        return view('autoload.login');
     }
 
     public function login(Request $request)
@@ -27,7 +27,7 @@ class AuthController extends Controller
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            return redirect('/')->with('message', 'You are now logged in!');
+            return redirect()->route('companies.index')->with('message', 'You are now logged in!');
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');

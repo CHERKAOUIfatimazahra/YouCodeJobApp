@@ -1,67 +1,124 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="img/Jub.png" class="h-14" alt="Logo" />
+            </a>
+
+            <div class="flex md:order-2 space-x-3 md:space-x-4 rtl:space-x-reverse">
+                @auth
+                    <a href="{{ route('companies.index') }}"
+                        class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Dashboard</a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button
+                            class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Logout</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}"
+                        class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Login</a>
+                    <a href="{{ route('register') }}"
+                        class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Get
+                        started</a>
+                @endauth
+
+                <button data-collapse-toggle="navbar-cta" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    aria-controls="navbar-cta" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+                <ul
+                    class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a href="/"
+                            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-700 md:dark:hover:text-orange-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="homeAnnoune"
+                            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-700 md:dark:hover:text-orange-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Annancement</a>
+                    </li>
+                    <li>
+                        <a href="homeCompany"
+                            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-700 d:dark:hover:text-orange-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">companies</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="mx-4">
-        <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
+        <div class="bg-white border border-gray-300 p-10 rounded max-w-lg mx-auto mt-24 shadow-lg">
             <header class="text-center">
-                <h2 class="text-2xl font-bold uppercase mb-1">
+                <h2 class="text-2xl font-bold uppercase mb-1 text-gray-800">
                     Register
                 </h2>
-                <p class="mb-4">Create an account </p>
+                <p class="mb-4 text-gray-600">Create an account</p>
             </header>
 
             <form action="{{ route('auth.register') }}" method="POST">
                 @csrf
 
-                <div class="mb-6">
-                    <label for="name" class="inline-block text-lg mb-2">
-                        Name
-                    </label>
-                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="name" value="{{old('name')}}"/>
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-semibold text-gray-600 mb-1">Name</label>
+                    <input type="text"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+                        name="name" value="{{ old('name') }}" />
                     @error('name')
-        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-        @enderror
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
-                <div class="mb-6">
-                    <label for="email" class="inline-block text-lg mb-2">Email</label>
-                    <input type="email" class="border border-gray-200 rounded p-2 w-full" name="email" value="{{old('email')}}"/>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-semibold text-gray-600 mb-1">Email</label>
+                    <input type="email"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+                        name="email" value="{{ old('email') }}" />
                     @error('email')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="mb-6">
-                    <label for="password" class="inline-block text-lg mb-2">
-                        Password
-                    </label>
-                    <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password" value="{{old('password')}}"/>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-semibold text-gray-600 mb-1">Password</label>
+                    <input type="password"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+                        name="password" value="{{ old('password') }}" />
                     @error('password')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="mb-6">
-                    <label for="password2" class="inline-block text-lg mb-2">
-                        Confirm Password
-                    </label>
-                    <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password_confirmation"
-                    value="{{old('password_confirmation')}}"/>
+                <div class="mb-4">
+                    <label for="password2" class="block text-sm font-semibold text-gray-600 mb-1">Confirm Password</label>
+                    <input type="password"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+                        name="password_confirmation" value="{{ old('password_confirmation') }}" />
                     @error('password_confirmation')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mb-6">
-                    <button type="submit" class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                        Sign Up
+                    <button type="submit"
+                        class="w-full bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 focus:outline-none focus:ring focus:border-orange-400">
+                        Register
                     </button>
                 </div>
 
-                <div class="mt-8">
-                    <p>
-                        Already have an account?
-                        <a href="{{ route('login') }}" class="text-laravel">Login</a>
+                <div class="text-center">
+                    <p class="text-sm text-gray-600">
+                        Already have an account? <a href="{{ route('login') }}"
+                            class="text-orange-500 hover:underline">Login</a>
                     </p>
                 </div>
             </form>

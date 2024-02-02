@@ -23,6 +23,7 @@ use App\Http\Controllers\HomeController;
  
 Route::get('/',[HomeController::class, 'index']);
 Route::get('homeAnnoune',[HomeController::class, 'announce']);
+Route::get('homeCompany',[HomeController::class, 'company']);
 
 Route::get('/login', [AuthController::class,'loginForm'])->name('login')->middleware('guest');
 Route::get('/register', [AuthController::class,'index'])->name('register')->middleware('guest');
