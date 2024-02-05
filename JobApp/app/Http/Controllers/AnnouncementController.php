@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAnnouncementRequest;
 use App\Models\Announcement;
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -34,19 +35,19 @@ class AnnouncementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAnnouncementRequest $request)
     {
-        $request->validate([
-            'title'=>'required|min:10|max:255',
-            'description'=>'required',
-            'date'=>'required|date',
-            'user_id'=>'exists:users,id',
-            'company_id'=> 'exists:companies,id'
+        // $request->validate([
+        //     'title'=>'required|min:10|max:255',
+        //     'description'=>'required',
+        //     'date'=>'required|date',
+        //     'user_id'=>'exists:users,id',
+        //     'company_id'=> 'exists:companies,id'
             
-        ]);
+        // ]);
         // dd($request->all());
         
-        Announcement::create($request->all());
+        Announcement::create($request->validated());
          
         return redirect()->route('announcements.index')
                         ->with('success','Announcement created successfully.');
@@ -79,22 +80,23 @@ class AnnouncementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Announcement $announcement)
+    public function update(StoreAnnouncementRequest $request, Announcement $announcement)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'nullable',
-            'date' => 'required|date',
-            'company_id' => 'required|exists:companies,id',
+        // $request->validate([
+        //     'title' => 'required',
+        //     'description' => 'nullable',
+        //     'date' => 'required|date',
+        //     'company_id' => 'required|exists:companies,id',
 
-        ]);
+        // ]);
 
-        $announcement->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'date' => $request->date,
-            'company_id' => $request->company_id,
-        ]);
+        $announcement->update($request->validated()
+            // [
+            // 'title' => $request->title,
+            // 'description' => $request->description,
+            // 'date' => $request->date,
+            // 'company_id' => $request->company_id,]
+    );
 
         return redirect()->route('announcements.index')->with('success', 'Announcement updated successfully');
     }

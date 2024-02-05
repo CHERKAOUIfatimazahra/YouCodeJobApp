@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCompanyRequest;
 use App\Models\Company;
 // use App\Http\Requests\StoreCompanyRequest;
 // use App\Http\Requests\UpdateCompanyRequest;
@@ -31,13 +32,14 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCompanyRequest $request)
     {
-        $request->validate([
-            'name'=>'required|min:10|max:255',
-            'description'=>'required',
-            
-        ]);
+        $request->validated(
+            // [
+            // 'name'=>'required|min:10|max:255',
+            // 'description'=>'required',  
+            // ]
+    );
 
         Company::create($request->all());
          
@@ -64,13 +66,15 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(StoreCompanyRequest $request, Company $company)
     {
-        $request->validate([
-            'name'=>'required|min:10|max:255',
-            'description'=>'required', 
-        ]);
-        $company->update($request->all());
+        $request->validated(
+            // [
+            // 'name'=>'required|min:10|max:255',
+            // 'description'=>'required', 
+            // ]
+    );
+        $company->update($request->validated());
         
         return redirect()->route('companies.index')
                         ->with('success','Company updated successfully');
