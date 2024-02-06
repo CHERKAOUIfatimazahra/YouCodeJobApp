@@ -10,6 +10,7 @@ use App\Models\Skills;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,13 +19,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(5)->create();
+        $learner = User::factory()->create();
         
-        Company::factory()->count(10)->create();
+        // Company::factory()->create();
 
-        Announcement::factory()->count(15)->create();
+        // Announcement::factory()->create();
 
-        Skills::factory(10)->create();
+        // Skills::factory()->create();
+
+        // Role::create([
+        //     'name' => 'learner'
+        // ]);
+        
+        // $user = User::create([
+        //     'name' => 'Admin',
+        //     'email' => 'admhin@uuuuu.com',
+        //     'password' => bcrypt('123')
+        // ]);
+        
+        // $user->assignRole('admin');
+        $learner->assignRole('learner');
+        
 
         // User::factory()->create([
         //       
