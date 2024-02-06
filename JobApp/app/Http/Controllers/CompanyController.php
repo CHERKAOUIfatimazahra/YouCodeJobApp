@@ -20,6 +20,14 @@ class CompanyController extends Controller
         return view('companies.index',compact('companies'))
                     ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+    // public function archive()
+    // {
+    //     $companies = Company::latest()->paginate(5);
+        
+    //     return view('companies.index',compact('companies'))
+    //                 ->with('i', (request()->input('page', 1) - 1) * 5);
+    // }
+
 
     /**
      * Show the form for creating a new resource.

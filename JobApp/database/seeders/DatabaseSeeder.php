@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Announcement;
 use App\Models\Company;
+use App\Models\Skills;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,8 @@ class DatabaseSeeder extends Seeder
         Company::factory()->count(10)->create();
 
         Announcement::factory()->count(15)->create();
+
+        Skills::factory(10)->create();
 
         // User::factory()->create([
         //       
