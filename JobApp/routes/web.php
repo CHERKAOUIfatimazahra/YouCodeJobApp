@@ -1,14 +1,15 @@
 <?php
 
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\HomeController;
-
-
-
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\StatiController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +31,25 @@ Route::get('/register', [AuthController::class,'index'])->name('register')->midd
 Route::post('/login', [AuthController::class,'login'])->name('authenticate')->middleware('guest');
 Route::post('/register', [AuthController::class,'register'])->name('auth.register')->middleware('guest');
 Route::post('/logout', [AuthController::class,'logout'])->name('logout')->middleware('auth');
-// Route::get('/test',[TestController::class, 'dashboard']);
-// Route::get('/companies',[CompanyController::class,'index'])->name('companies.index');
 
-Route::resource('companies', CompanyController::class);
-Route::resource('announcements', AnnouncementController::class);
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::resource('companies', CompanyController::class);
+    Route::resource('announcements', AnnouncementController::class);
+    Route::resource('statistic', StatiController::class);
+});
+
+Route::group(['middleware' => ['role:admin|learner']], function () {
+    Route::resource('users',UserController::class);
+    Route::get('apply/{user}/{announcement}',[ApplyController::class, 'apply'] )->name('apply.btn')->middleware('auth');
+});
+Route::group(['middleware' => ['role:learner']], function () {
+    Route::get('/profils', [ProfilController::class, 'index'])->name('profils.index');
+    Route::get('/profils/{user}/edit', [ProfilController::class, 'edit'])->name('profils.edit');
+    Route::put('/profils/{user}', [ProfilController::class, 'update'])->name('profils.update');
+});
+
+Route::get('/apply', [ApplyController::class, 'index'])->name('apply.index')->middleware('auth');
+
 // Route::resource('auto',AuthController::class);
 // Route::post('/companies',[CompanyController::class,'store'])->name('companies.store');
 

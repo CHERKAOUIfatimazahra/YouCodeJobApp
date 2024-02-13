@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyRequest;
 use App\Models\Company;
-// use App\Http\Requests\StoreCompanyRequest;
-// use App\Http\Requests\UpdateCompanyRequest;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -42,12 +40,7 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        $request->validated(
-            // [
-            // 'name'=>'required|min:10|max:255',
-            // 'description'=>'required',  
-            // ]
-    );
+        $request->validated();
 
         Company::create($request->all());
          
@@ -76,12 +69,7 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, Company $company)
     {
-        $request->validated(
-            // [
-            // 'name'=>'required|min:10|max:255',
-            // 'description'=>'required', 
-            // ]
-    );
+        $request->validated();
         $company->update($request->validated());
         
         return redirect()->route('companies.index')

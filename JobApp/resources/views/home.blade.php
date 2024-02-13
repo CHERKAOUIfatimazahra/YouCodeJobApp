@@ -9,13 +9,23 @@
 
             <div class="flex md:order-2 space-x-3 md:space-x-4 rtl:space-x-reverse">
                 @auth
-                    <a href="{{ route('companies.index') }}"
+                    @if(auth()->check() && auth()->user()->hasRole('admin'))
+                    <a href="{{ route('announcements.index') }}"
                         class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Dashboard</a>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button
                             class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Logout</button>
                     </form>
+                    @else
+                    <a href="{{ route('profils.index') }}"
+                        class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Dashboard</a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button
+                            class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Logout</button>
+                    </form>
+                    @endif
                 @else
                     <a href="{{ route('login') }}"
                         class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Login</a>
@@ -105,15 +115,36 @@
                             <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">{{ $announcement->date }}</p>
                             <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
                                 {{ $announcement->description }}</p>
+                            <h3>Skills</h3>
+                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
+                                @foreach ($announcement->skills as $skill)
+                                    {{ $skill->skill }}
+                                    @if (!$loop->last)
+                                        ,
+                                    @endif
+                                @endforeach
+                            </p>
+                            @auth
+                            @if($hasMatchingSkills)
                             <ul class="flex space-x-4 sm:mt-0">
                                 <li>
-                                    <a href="#"
+                                    <a href="{{ route('apply.btn', ['user' => Auth::id(), 'announcement' => $announcement->id]) }}"
                                         class="inline-flex items-center bg-orange-500 hover:bg-orange-700 text-white px-4 py-2 rounded-md transition duration-300">
                                         Apply for Job
                                     </a>
                                 </li>
-
                             </ul>
+                            
+                            <ul class="flex space-x-4 sm:mt-0">
+                                <li>
+                                    <a href="#" class="inline-flex items-center text-green-500 hover:text-green-700 px-4 py-2 rounded-md transition duration-300">
+                                        Job MATCH
+                                    </a>
+                                </li>
+                            </ul>
+                            @endif
+                            @endauth
+                            
                         </div>
                     </div>
                 @endforeach

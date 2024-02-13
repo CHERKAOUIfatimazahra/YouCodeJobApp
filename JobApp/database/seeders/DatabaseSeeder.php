@@ -6,7 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Announcement;
 use App\Models\Company;
-use App\Models\Skills;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -19,27 +19,49 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $learner = User::factory()->create();
-        
-        // Company::factory()->create();
-
-        // Announcement::factory()->create();
-
-        // Skills::factory()->create();
-
         // Role::create([
         //     'name' => 'learner'
+        // ]);
+        // Role::create([
+        //     'name' => 'admin'
         // ]);
         
         // $user = User::create([
         //     'name' => 'Admin',
-        //     'email' => 'admhin@uuuuu.com',
+        //     'email' => 'fatimazahra@gmail.com',
         //     'password' => bcrypt('123')
         // ]);
         
         // $user->assignRole('admin');
-        $learner->assignRole('learner');
+
+        // $learner = User::factory()->create();
+        // $learner->assignRole('learner');
         
+        Company::factory(2)->create();
+
+        Announcement::factory(6)->create();
+
+        Skill::factory(5)->create();
+
+        $announcement = Announcement::first();
+        $skill = Skill::all();
+
+        $announcement->skills()->attach($skill);
+
+        $skills = Skill::factory(3)->create();
+
+
+
+
+       
+
+
+
+
+
+
+
+
 
         // User::factory()->create([
         //       

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
@@ -24,10 +25,11 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (auth()->attempt($formFields)) {
+        if (Auth::attempt($formFields)) {
             $request->session()->regenerate();
 
-            return redirect()->route('companies.index')->with('message', 'You are now logged in!');
+            return redirect()->route('statistic.index')->with('message', 'You are now logged in!');
+
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
@@ -41,10 +43,10 @@ class AuthController extends Controller
             'password' => 'required|confirmed|min:6'
         ]);
 
-        $formFields['password'] = bcrypt($formFields['password']);
+        $formFields['password'] = ($formFields['password']);
 
         $user = User::create($formFields);
-
+        $user->assignRole('learner');
 
         auth()->login($user);
 

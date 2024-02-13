@@ -51,6 +51,14 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="mb-6">
+                        <label for="skill" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Skills</label>
+                        <select id="skill" class="form-multiselect block w-full mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" multiple="multiple" name="skills[]">
+                            @foreach($skills as $skill)
+                                <option value="{{ $skill->id }}">{{ $skill->skill }}</option>
+                            @endforeach
+                        </select>
+                    </div> 
                     <div class="sm:col-span-2">
                         <label for="description"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
@@ -66,6 +74,10 @@
             </form>
         </div>
     </section>
-
+    <script>
+        $(document).ready(function() { 
+            $('#skill').select2();
+        });
+    </script>
 @endsection
 @section('title', 'YJD create company')

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAnnouncementRequest;
 use App\Models\Announcement;
 use App\Models\Company;
+use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 // use App\Http\Requests\StoreAnnouncementRequest;
 // use App\Http\Requests\UpdateAnnouncementRequest;
@@ -16,9 +19,9 @@ class AnnouncementController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    { 
+        $announcements = Announcement::with('skills')->get();
         $announcements = Announcement::latest()->paginate(5);
-        
         return view('announcements.index',compact('announcements'))
                     ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -27,10 +30,12 @@ class AnnouncementController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        $companies = Company::all();
-        return view('Announcements.create', compact('companies'));
-    }
+{
+    $companies = Company::all();
+    $skills = Skill::all();
+
+    return view('Announcements.create', compact('companies','skills'));
+}
     
     /**
      * Store a newly created resource in storage.
@@ -47,7 +52,12 @@ class AnnouncementController extends Controller
         // ]);
         // dd($request->all());
         
-        Announcement::create($request->validated());
+        $announcement = Announcement::create($request->validated());
+        if ($announcement) {
+            if ($request->has('skills')) {
+                $announcement->skills()->sync($request->input('skills'));
+            }   
+        }
          
         return redirect()->route('announcements.index')
                         ->with('success','Announcement created successfully.');
@@ -74,7 +84,8 @@ class AnnouncementController extends Controller
     public function edit(Announcement $announcement)
     {
         $companies = Company::all();
-        return view('announcements.edit', compact('announcement', 'companies'));
+        $skills = Skill::all();
+        return view('announcements.edit', compact('announcement', 'companies','skills'));
     }
 
     /**
