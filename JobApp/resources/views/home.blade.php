@@ -9,7 +9,8 @@
 
             <div class="flex md:order-2 space-x-3 md:space-x-4 rtl:space-x-reverse">
                 @auth
-                    @if(auth()->check() && auth()->user()->hasRole('admin'))
+                    @if(auth()->user()->hasrole('admin'))
+
                     <a href="{{ route('announcements.index') }}"
                         class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-orange-700 dark:hover:bg-orange-800 dark:focus:ring-orange-900">Dashboard</a>
                     <form action="{{ route('logout') }}" method="post">

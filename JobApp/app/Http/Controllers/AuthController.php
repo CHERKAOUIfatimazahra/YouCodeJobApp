@@ -46,7 +46,7 @@ class AuthController extends Controller
         $formFields['password'] = ($formFields['password']);
 
         $user = User::create($formFields);
-        $user->assignRole('learner');
+        // $user->assignRole('learner');
 
         auth()->login($user);
 

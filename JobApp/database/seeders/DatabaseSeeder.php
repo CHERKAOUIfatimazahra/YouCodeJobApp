@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         // Role::create([
         //     'name' => 'learner'
         // ]);
@@ -28,27 +30,32 @@ class DatabaseSeeder extends Seeder
         
         // $user = User::create([
         //     'name' => 'Admin',
-        //     'email' => 'fatimazahra@gmail.com',
+        //     'email' => 'fatimazahra1@gmail.com',
         //     'password' => bcrypt('123')
         // ]);
-        
+       
         // $user->assignRole('admin');
+        // $users = User::find(1);
+
+// $role = Role::findByName('admin');
+// $role->assignRole('admin');
+// $role->users()->attach($users);
 
         // $learner = User::factory()->create();
         // $learner->assignRole('learner');
         
-        Company::factory(2)->create();
+        // Company::factory(2)->create();
 
-        Announcement::factory(6)->create();
+        // Announcement::factory(6)->create();
 
-        Skill::factory(5)->create();
+        // Skill::factory(5)->create();
 
-        $announcement = Announcement::first();
-        $skill = Skill::all();
+        // $announcement = Announcement::first();
+        // $skill = Skill::all();
 
-        $announcement->skills()->attach($skill);
+        // $announcement->skills()->attach($skill);
 
-        $skills = Skill::factory(3)->create();
+        // $skills = Skill::factory(3)->create();
 
 
 
@@ -74,7 +81,7 @@ class DatabaseSeeder extends Seeder
 
         // ]);
 
-        // Company::factory()->count(10)->create();
+        Company::factory()->count(10)->create();
 
         // DB::table('companies')->insert([
         //     'name'=>'youcode',

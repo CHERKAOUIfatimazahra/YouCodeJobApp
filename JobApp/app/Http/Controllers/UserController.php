@@ -39,7 +39,7 @@ class UserController extends Controller
         'name' => 'required|min:10|max:255',
         'email' => 'required|email',
         'password' => 'required',
-        'roles' => 'required|array'
+        // 'roles' => 'required|array'
     ]);
 
     $roles = Role::all();
@@ -50,11 +50,11 @@ class UserController extends Controller
             $user->skills()->sync($request->input('skills'));
         }   
     }
-    if ($user) {
-        if ($request->has('roles')) {
-            $user->roles()->sync($request->input('roles'));
-        }   
-    }
+    // if ($user) {
+    //     if ($request->has('roles')) {
+    //         $user->roles()->sync($request->input('roles'));
+    //     }   
+    // }
 
     return redirect()->route('users.index')
                     ->with('success', 'User created successfully.');

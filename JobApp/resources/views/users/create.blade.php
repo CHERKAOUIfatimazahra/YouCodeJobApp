@@ -67,7 +67,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-6">
+                    {{-- <div class="mb-6">
                         <label for="role" class="text-xl font-semibold mb-2 text-gray-700">User Roles</label>
                         <select id="role"
                             class="form-multiselect block w-full mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -76,7 +76,7 @@
                                 <option>{{ $role->name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="text-center">
                         <button type="submit"
                             class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Submit</button>

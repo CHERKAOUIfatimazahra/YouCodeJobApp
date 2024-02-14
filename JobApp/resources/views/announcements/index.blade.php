@@ -12,7 +12,7 @@
                         class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
 
                         <div
-                        @if(Auth::user()->hasRole('admin'))
+                        @if(Auth::user()->roles()->where('role_id',1))
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                             <a href="{{ route('announcements.create') }}">
                                 <button type="button"
@@ -27,8 +27,6 @@
                             </a>
                         @endif
                             <div class="flex items-center space-x-3 w-full md:w-auto">
-
-
 
                                 <div id="filterDropdown"
                                     class="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">

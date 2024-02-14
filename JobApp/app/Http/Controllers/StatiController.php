@@ -16,6 +16,7 @@ class StatiController extends Controller
         $announcements_count = Announcement::count();
         $companies_count = Company::count();
         $applies_count = Apply::count();
+        // dd(auth()->user()->roles());
 
         return view('statistic.index', compact('users_count','announcements_count', 'companies_count','applies_count'));
     }

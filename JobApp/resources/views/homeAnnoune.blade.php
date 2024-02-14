@@ -80,7 +80,7 @@
                                         @endif
                                     @endforeach
                                 </p>
-                                @auth
+                                {{-- @auth
                                 <ul class="flex space-x-4 sm:mt-0">
                                     <li>
                                         <a href="{{ route('apply.btn', ['user' => Auth::id(), 'announcement' => $announcement->id]) }}"
@@ -98,7 +98,7 @@
                                     </li>
                                 </ul>
                                 @endif
-                                @endauth
+                                @endauth --}}
                         </div>
                     </div>
                 @endforeach

@@ -32,17 +32,17 @@ Route::post('/login', [AuthController::class,'login'])->name('authenticate')->mi
 Route::post('/register', [AuthController::class,'register'])->name('auth.register')->middleware('guest');
 Route::post('/logout', [AuthController::class,'logout'])->name('logout')->middleware('auth');
 
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('companies', CompanyController::class);
     Route::resource('announcements', AnnouncementController::class);
     Route::resource('statistic', StatiController::class);
 });
 
-Route::group(['middleware' => ['role:admin|learner']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('users',UserController::class);
     Route::get('apply/{user}/{announcement}',[ApplyController::class, 'apply'] )->name('apply.btn')->middleware('auth');
 });
-Route::group(['middleware' => ['role:learner']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/profils', [ProfilController::class, 'index'])->name('profils.index');
     Route::get('/profils/{user}/edit', [ProfilController::class, 'edit'])->name('profils.edit');
     Route::put('/profils/{user}', [ProfilController::class, 'update'])->name('profils.update');
