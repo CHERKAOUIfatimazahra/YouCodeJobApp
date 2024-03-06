@@ -76,6 +76,7 @@ class HomeController extends Controller
     return $percentage;
 }
 
+
     public function company(){
         $companies = Company::latest()->paginate(10);
         

@@ -37,7 +37,7 @@ public function apply(Request $request, $user_id, $announcement_id)
     $apply->user_id = $user_id; 
     $apply->announcement_id = $announcement_id;
     $apply->save();
-
+ 
     return redirect()->back()->with('success', 'Application submitted successfully.');
 }
     /**

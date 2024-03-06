@@ -26,5 +26,5 @@ class Apply extends Model
     //     static::deleting(function(Apply $applies){
     //         $applies->announcement()->delete();
     //     });
-    // }
+    // } 
 }

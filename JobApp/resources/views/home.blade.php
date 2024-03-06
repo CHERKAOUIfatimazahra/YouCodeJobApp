@@ -146,7 +146,7 @@
                             @endif
                             @endauth
                             
-                        </div>
+                        </div> 
                     </div>
                 @endforeach
             </div>

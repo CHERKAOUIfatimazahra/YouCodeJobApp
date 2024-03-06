@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/apply', [ApplyController::class, 'index'])->name('apply.index')->middleware('auth');
-
+ 
 // Route::resource('auto',AuthController::class);
 // Route::post('/companies',[CompanyController::class,'store'])->name('companies.store');
 
